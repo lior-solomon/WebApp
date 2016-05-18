@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>WebApp</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="WebApp.css">
+    <script src="https://use.fontawesome.com/8d4b3dfaba.js"></script>
+</head>
+<body>
+<!--
+
+Watch the video for reference:
+https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
+
+-->
+
+<header>
+    <div class="header">
+        <a href="#"><img src="https://googledrive.com/host/0B6ZIsommzsgVMVA2MzdKUjN2S0U/logo-netcraft.svg" alt="netcraft"></a>
+        <form class="search-box" method="get" action="http://www.google.com">
+            <input type="search" name="q" placeholder="search">
+        </form>
+    </div>
+</header>
+<div class="container">
+    <div class="main">
+        <div class="notifications">
+            <p>Notifications</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <nav class="nav-section">
+                    <div id="reporting-platform">
+                        <p>Select Reporting</br>Platform</p>
+                        <div class="menu-hint">
+                            <p>Choose QS report</p>
+                        </div>
+                        <ul class="action-list">
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-4">
+                <nav class="nav-section">
+                    <div id="dashboard">
+                        <p>Select</br>Dashboard</p>
+                        <div class="menu-hint">
+                            <p>Choose dashboard</p>
+                        </div>
+                        <ul class="action-list">
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-4">
+                <nav class="nav-section">
+                    <div id="tutorials">
+                        <p>Help &</br>Tutorials</p>
+                        <div class="menu-hint">
+                            <p>Choose guide</p>
+                        </div>
+                        <ul class="action-list">
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">link</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="tabs">
+            <ul>
+                <li>
+                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                    <a href="#quick-reports">Quick Reports</a>
+                    <div id="quick-reports">
+                        <select>
+                            <option value="link1"></option>
+                            <option value="link2"></option>
+                            <option value="link3"></option>
+                        </select>
+                        <img src="pics/expand.png" class="expand-image">
+                        <img src="pics/settings.png">
+                        <div id="quick-reports-form">
+                            <form autocomplete="on">
+                                <span>Report 01</span>
+                                Name:<input class="input-name" type="text" name="Site name" autofocus required>
+                                URL:<input class="input-url" type="text" name="Site URL" required>
+                            </form>
+                            <form autocomplete="on">
+                                <span>Report 02</span>
+                                Name:<input class="input-name" type="text" name="Site name" required>
+                                URL:<input class="input-url" type="text" name="Site URL" required>
+                            </form>
+                            <form autocomplete="on">
+                                <span>Report 03</span>
+                                Name:<input class="input-name" type="text" name="Site name" required>
+                                URL:<input class="input-url" type="text" name="Site URL" required>
+                            </form>
+                            <input class="submit-button" type="submit" value="Save">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <a href="#my-folders">My Folders</a>
+                    <div id="my-folders"></div>
+                </li>
+                <li>
+                    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                    <a href="#my-team-folders">My Team Folders</a>
+                    <div id="my-team-folders">
+                        <select>
+                            <option value="link1"></option>
+                            <option value="link2"></option>
+                            <option value="link3"></option>
+                        </select>
+                        <img src="pics/expand.png" class="expand-image">
+                        <img src="pics/settings.png">
+                        <div id="my-team-folders-form">
+                            <form autocomplete="on">
+                                <span>Report 01</span>
+                                Name:<input class="input-name" type="text" name="Site name" autofocus  required>
+                                URL:<input class="input-url" type="text" name="Site URL"  required>
+                            </form>
+                            <form autocomplete="on">
+                                <span>Report 02</span>
+                                Name:<input class="input-name" type="text" name="Site name" required>
+                                URL:<input class="input-url" type="text" name="Site URL" required>
+                            </form>
+                            <form autocomplete="on">
+                                <span>Report 03</span>
+                                Name:<input class="input-name" type="text" name="Site name" required>
+                                URL:<input class="input-url" type="text" name="Site URL" required>
+                            </form>
+                            <input class="submit-button" type="submit" value="Save">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                    <a href="#public-reports">Public Reports</a>
+                    <div id="public-reports"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script src="WebApp.js"></script>
+</html>

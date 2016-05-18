@@ -1,0 +1,196 @@
+body{
+    box-sizing: border-box;
+    background-image: url("pics/background.jpg");
+    backgroung-repeat: no-repeat;
+    background-size: cover;
+}
+.header {
+    max-width: 100%;
+    min-width: 400px;
+    padding: 6px;
+    margin: auto;
+    background: black;
+}
+.search-box {
+    float: right;
+}
+input:focus {
+    background-color: orange;
+}
+.main {
+    max-width: 1080px;
+    min-width: 400px;
+    height: 640px;
+    margin: auto;
+    background: darkgrey;
+}
+.notifications {
+    line-height: 15px;
+    background-color: white;
+    border: solid darkgrey;
+}
+.notifications>p {
+    line-height: 15px;
+}
+.nav-section {
+    color: white;
+    background: black;
+    /*width: 25%;*/
+    margin: 43px;
+    text-align: center;
+    /*display: inline-block;*/
+}
+#reporting-platform {
+    background: black url("pics/action-report-new.png") 91px 45px no-repeat;
+    height: 114px;
+    position: relative;
+}
+#dashboard {
+    background: black url("pics/action-report-top.png") 91px 45px no-repeat;
+    height: 114px;
+    position: relative;
+}
+#tutorials {
+    background: black url("pics/actions-help.png") 91px 45px no-repeat;
+    height: 114px;
+    position: relative;
+}
+.menu-hint{
+    background-color: white;
+    color: black;
+    margin-top: 60px;
+}
+.menu-hint>p {
+    position: relative;
+    text-align: left;
+    margin-bottom: 0;
+    padding-left: 10px;
+}
+.menu-hint>p::after {
+    display: inline-block;
+    content: " ";
+    margin: 5px;
+    float: right;
+    border-top: 7px solid black;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    transition: 1s;
+}
+.nav-section:hover .menu-hint>p::after{
+    transform: rotate(180deg);
+}
+.action-list {
+    list-style-type: none;
+    background-color: white;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+    display: none;
+}
+.action-list a {
+    text-decoration: none;
+    color: black;
+    padding-left: 10px;
+}
+.action-list li {
+    text-align: left;
+}
+.action-list li::before {
+    display: block;
+    content: " ";
+    margin: 10px;
+    border: 1px dotted gray;
+}
+.action-list li:hover {
+    font-weight: bold;
+}
+.nav-section:hover .action-list {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    z-index: 999;
+}
+.menu-hint:hover, .nav-section>div>p:hover {
+    font-weight: bold;
+}
+.tabs {
+    position: relative;
+}
+.tabs li {
+    list-style: none;
+    display: inline-block;
+    width: 24%;
+}
+.tabs a {
+    text-decoration: none;
+    color: black;
+    margin-left: 70px;
+}
+.tabs i {
+    position: relative;
+    left: 70px;
+}
+#quick-reports, #my-folders, #my-team-folders, #public-reports {
+    position: absolute;
+    background-color: grey;
+    left:0;
+    margin-left: 43px;
+    width: 92%;
+    height: 350px;
+    display: none;
+}
+.tabs li a:hover{
+    font-weight: bold;
+}
+#quick-reports:target, #my-folders:target, #my-team-folders:target, #public-reports:target {
+    display: block;
+}
+select {
+    width: 150px;
+    margin-top:20px;
+    margin-left: 20px;
+}
+#quick-reports-form, #my-team-folders-form {
+    background-color: white;
+    margin: 20px 20px;
+    padding-top: 20Px;
+    position: relative;
+}
+.expand-image {
+    left: 92%;
+    background-color: white;
+}
+#quick-reports>img, #my-team-folders>img {
+    background-color: white;
+    position: absolute;
+    right: 20px;
+    margin-top: 36px;
+}
+#quick-reports form, #my-team-folders form {
+    text-align: center;
+    background-color: lightgray;
+    margin: 25px;
+    padding: 5px 0 5px;
+}
+.input-name {
+    width: 30%;
+}
+.input-url {
+    width: 40%;
+}
+#quick-reports span, #my-team-folders span {
+    padding-right: 30px;
+    background-color: lightgray;
+}
+.submit-button {
+    background-color: black;
+    color: white;
+    border: none;
+    position: relative;
+    left: 93%;
+    bottom: 10px;
+}
+.submit-button:focus {
+    background-color: black;
+}
+
