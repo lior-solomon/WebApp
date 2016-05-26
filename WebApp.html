@@ -32,7 +32,7 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
         <div class="row">
             <div class="col-sm-4">
                 <nav class="nav-section">
-                    <div id="reporting-platform">
+                    <div id="reportingPlatform">
                         <p>Select Reporting</br>Platform</p>
                         <div class="menu-hint">
                             <p>Choose QS report</p>
@@ -84,10 +84,10 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
         </div>
         <div class="tabs">
             <ul>
-                <li>
+                <li id="tabQuickReports" class="tab active-tab">
                     <i class="fa fa-external-link" aria-hidden="true"></i>
-                    <a href="#quick-reports">Quick Reports</a>
-                    <div id="quick-reports">
+                    <a href="#quickReports">Quick Reports</a>
+                    <div id="quickReports">
                         <select>
                             <option value="link1"></option>
                             <option value="link2"></option>
@@ -95,35 +95,43 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                         </select>
                         <img src="pics/expand.png" class="expand-image">
                         <img src="pics/settings.png">
-                        <div id="quick-reports-form">
+                        <div id="quickReportsForm">
                             <form autocomplete="on">
-                                <span>Report 01</span>
-                                Name:<input class="input-name" type="text" name="Site name" autofocus required>
-                                URL:<input class="input-url" type="text" name="Site URL" required>
+                                <div>
+                                    <span>Report 01</span>
+                                    <label>Name:</label>
+                                    <input id="quickReportsReport1Name" class="quick-reports-input-name" type="text" name="Site name" autofocus>
+                                    <label>URL:</label>
+                                    <input id="quickReportsReport1Url" class="quick-reports-input-url" type="url" name="Site URL">
+                                </div>
+                                <div>
+                                    <span>Report 02</span>
+                                    <label>Name:</label>
+                                    <input id="quickReportsReport2Name" class="quick-reports-input-name" type="text" name="Site name">
+                                    <label>URL:</label>
+                                    <input id="quickReportsReport2Url" class="quick-reports-input-url" type="url" name="Site URL">
+                                </div>
+                                <div>
+                                    <span>Report 03</span>
+                                    <label>Name:</label>
+                                    <input id="quickReportsReport3Name" class="quick-reports-input-name" type="text" name="Site name">
+                                    <label>URL:</label>
+                                    <input id="quickReportsReport3Url" class="quick-reports-input-url" type="url" name="Site URL">
+                                </div>
+                                <input class="quick-reports-submit-button" type="submit" value="Save">
                             </form>
-                            <form autocomplete="on">
-                                <span>Report 02</span>
-                                Name:<input class="input-name" type="text" name="Site name" required>
-                                URL:<input class="input-url" type="text" name="Site URL" required>
-                            </form>
-                            <form autocomplete="on">
-                                <span>Report 03</span>
-                                Name:<input class="input-name" type="text" name="Site name" required>
-                                URL:<input class="input-url" type="text" name="Site URL" required>
-                            </form>
-                            <input class="submit-button" type="submit" value="Save">
                         </div>
                     </div>
                 </li>
-                <li>
+                <li id="tabMyFolders" class="tab">
                     <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <a href="#my-folders">My Folders</a>
-                    <div id="my-folders"></div>
+                    <a href="#myFolders">My Folders</a>
+                    <div id="myFolders"></div>
                 </li>
-                <li>
+                <li id="tabMyTeamFolders" class="tab">
                     <i class="fa fa-folder-open-o" aria-hidden="true"></i>
-                    <a href="#my-team-folders">My Team Folders</a>
-                    <div id="my-team-folders">
+                    <a href="#myTeamFolders">My Team Folders</a>
+                    <div id="myTeamFolders">
                         <select>
                             <option value="link1"></option>
                             <option value="link2"></option>
@@ -131,30 +139,38 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                         </select>
                         <img src="pics/expand.png" class="expand-image">
                         <img src="pics/settings.png">
-                        <div id="my-team-folders-form">
+                        <div id="myTeamFoldersForm">
                             <form autocomplete="on">
-                                <span>Report 01</span>
-                                Name:<input class="input-name" type="text" name="Site name" autofocus  required>
-                                URL:<input class="input-url" type="text" name="Site URL"  required>
+                                <div>
+                                    <span>Report 01</span>
+                                    <label>Name:</label>
+                                    <input id="myTeamFoldersReport1Name" class="my-team-folders-input-name" type="text" name="Site name" autofocus>
+                                    <label>URL:</label>
+                                    <input id="myTeamFoldersReport1Url" class="my-team-folders-input-url" type="url" name="Site URL">
+                                </div>
+                                <div>
+                                    <span>Report 02</span>
+                                    <label>Name:</label>
+                                    <input id="myTeamFoldersReport2Name" class="my-team-folders-input-name" type="text" name="Site name">
+                                    <label>URL:</label>
+                                    <input id="myTeamFoldersReport2Url" class="my-team-folders-input-url" type="url" name="Site URL">
+                                </div>
+                                <div>
+                                    <span>Report 03</span>
+                                    <label>Name:</label>
+                                    <input id="myTeamFoldersReport3Name" class="my-team-folders-input-name" type="text" name="Site name">
+                                    <label>URL:</label>
+                                    <input id="myTeamFoldersReport3Url" class="my-team-folders-input-url" type="url" name="Site URL">
+                                </div>
+                                <input class="my-team-folders-submit-button" type="submit" value="Save">
                             </form>
-                            <form autocomplete="on">
-                                <span>Report 02</span>
-                                Name:<input class="input-name" type="text" name="Site name" required>
-                                URL:<input class="input-url" type="text" name="Site URL" required>
-                            </form>
-                            <form autocomplete="on">
-                                <span>Report 03</span>
-                                Name:<input class="input-name" type="text" name="Site name" required>
-                                URL:<input class="input-url" type="text" name="Site URL" required>
-                            </form>
-                            <input class="submit-button" type="submit" value="Save">
                         </div>
                     </div>
                 </li>
-                <li>
+                <li id="tabPublicFolders" class="tab">
                     <i class="fa fa-files-o" aria-hidden="true"></i>
-                    <a href="#public-reports">Public Reports</a>
-                    <div id="public-reports"></div>
+                    <a href="#publicReports">Public Reports</a>
+                    <div id="publicReports"></div>
                 </li>
             </ul>
         </div>

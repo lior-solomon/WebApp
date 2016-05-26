@@ -40,7 +40,7 @@ input:focus {
     text-align: center;
     /*display: inline-block;*/
 }
-#reporting-platform {
+#reportingPlatform {
     background: black url("pics/action-report-new.png") 91px 45px no-repeat;
     height: 114px;
     position: relative;
@@ -130,27 +130,31 @@ input:focus {
     position: relative;
     left: 70px;
 }
-#quick-reports, #my-folders, #my-team-folders, #public-reports {
+.active-tab {
+    background-color: gray;
+}
+#quickReports, #myFolders, #myTeamFolders, #publicReports {
     position: absolute;
     background-color: grey;
-    left:0;
+    left: -3px;
     margin-left: 43px;
-    width: 92%;
-    height: 350px;
+    width: 93.5%;
+    height: 360px;
     display: none;
 }
 .tabs li a:hover{
     font-weight: bold;
 }
-#quick-reports:target, #my-folders:target, #my-team-folders:target, #public-reports:target {
+#quickReports:target, #myFolders:target, #myTeamFolders:target, #publicReports:target {
     display: block;
 }
 select {
     width: 150px;
     margin-top:20px;
     margin-left: 20px;
+    visibility: hidden;
 }
-#quick-reports-form, #my-team-folders-form {
+#quickReportsForm, #myTeamFoldersForm {
     background-color: white;
     margin: 20px 20px;
     padding-top: 20Px;
@@ -160,37 +164,46 @@ select {
     left: 92%;
     background-color: white;
 }
-#quick-reports>img, #my-team-folders>img {
+#quickReports>img, #myTeamFolders>img {
     background-color: white;
     position: absolute;
     right: 20px;
     margin-top: 36px;
 }
-#quick-reports form, #my-team-folders form {
+#quickReports form, #myTeamFolders form {
     text-align: center;
-    background-color: lightgray;
+    height: 230px;
     margin: 25px;
-    padding: 5px 0 5px;
 }
-.input-name {
+#quickReportsForm div, #myTeamFoldersForm div {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: lightgray;
+}
+.quick-reports-input-name, .my-team-folders-input-name {
     width: 30%;
 }
-.input-url {
+.quick-reports-input-url, .my-team-folders-input-url {
     width: 40%;
 }
-#quick-reports span, #my-team-folders span {
+.active-field {
+    border-color: red;
+}
+#quickReports span, #myTeamFolders span {
+    font-weight: 700;
     padding-right: 30px;
+    margin-left: 20px;
     background-color: lightgray;
 }
-.submit-button {
+.quick-reports-submit-button, .my-team-folders-submit-button {
     background-color: black;
     color: white;
     border: none;
     position: relative;
-    left: 93%;
-    bottom: 10px;
+    left: 47.6%;
+    top: 12px;
 }
-.submit-button:focus {
-    background-color: black;
+.quick-reports-submit-button:focus, .my-team-folders-submit-button:focus {
+    background-color: orange;
 }
 
