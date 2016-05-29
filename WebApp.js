@@ -36,7 +36,7 @@ var state = {
 // Display focused tab
 
 var tabs = document.querySelectorAll('.tab');
-for (var i=0; i>tabs.length; i++) {
+for (var i=0; i<tabs.length; i++) {
     var tabId = tabs[i].id;
     tabs[i].value = state.tabs.tabNames[tabId]
 }
@@ -47,36 +47,45 @@ for (var i=0 ; i<tabs.length; i++){
 function tabFocus(id, e) {
     for(var i=0 ; i<tabs.length; i++){
         if(tabs[i].id !== id){
-            tabs[i].className = "tab";
+            tabs[i].className = 'tab';
         }
         else {
-            tabs[i].className = "tab active-tab";
+            tabs[i].className = 'tab active-tab';
         }
     }
 };
 
-// Form validation
+// Form validation + Select tag input
 
-var reportsSubmitButton = document.querySelector('.quick-reports-submit-button');
-reportsSubmitButton.addEventListener('submit', formValidat());
-function formValidat () {
+var reportsForm = document.querySelector('#form1');
+reportsForm.addEventListener('submit', formValidate);
+function formValidate (e) {
+    e.preventDefault();
     var nameFields = document.querySelectorAll('.quick-reports-input-name');
     var urlFields = document.querySelectorAll('.quick-reports-input-url');
-    for (var i=0; i>nameFields.length; i++) {
-        if (nameFields[i].value = "") {
+    for (var i=0; i<nameFields.length; i++) {
+        if (nameFields[i].value === "") {
             nameFields[i].className = 'quick-reports-input-name active-field';
-            alert('Please fill out name field');
+            nameFields[i].required = true;
+            return;
         }
-        else if (urlFields[i].value = "") {
+        else if (urlFields[i].value === "") {
             nameFields[i].className = 'quick-reports-input-name';
             urlFields[i].className = 'quick-reports-input-url active-field';
-            alert('Please fill out URL field');
+            urlFields[i].required = true;
+            urlFields[i].type = 'url';
+            urlFields[i].focus();
+            return;
         }
         else {
             var nameFieldId = nameFields[i].id;
             state.quickReports.inputNames[nameFieldId] = nameFields[i].value;
+            document.querySelectorAll('.reportsSelect')[i].text = nameFields[i].value;
             var urlFieldId = urlFields[i].id;
             state.quickReports.inputUrls[urlFieldId] = urlFields[i].value;
+            document.querySelectorAll('.reportsSelect')[i].value = urlFields[i].value;
+            urlFields[i].className = 'quick-reports-input-url';
+            document.querySelector('#reportsSelectList').className = 'select active-select';
         }
     }
 }

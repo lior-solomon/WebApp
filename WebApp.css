@@ -148,11 +148,14 @@ input:focus {
 #quickReports:target, #myFolders:target, #myTeamFolders:target, #publicReports:target {
     display: block;
 }
-select {
+.select {
     width: 150px;
     margin-top:20px;
     margin-left: 20px;
     visibility: hidden;
+}
+.active-select {
+    visibility: visible;
 }
 #quickReportsForm, #myTeamFoldersForm {
     background-color: white;
