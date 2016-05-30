@@ -88,14 +88,16 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                     <i class="fa fa-external-link" aria-hidden="true"></i>
                     <a href="#quickReports">Quick Reports</a>
                     <div id="quickReports">
-                        <select id="reportsSelectList" class="select" name="Sites Links" form="form1">
-                            <option class="reportsSelect" value="link1">  </option>
-                            <option class="reportsSelect" value="link2">  </option>
-                            <option class="reportsSelect" value="link3">  </option>
+                        <select contenteditable="true" id="reportsSelectList" class="select" name="Sites Links" form="form1" onchange="reportsShowSite()">
+                            <option disabled selected value>-Please select link-</option>
+                            <option contenteditable="true" class="reportsSelect" value="link1"></option>
+                            <option contenteditable="true" class="reportsSelect" value="link2"></option>
+                            <option contenteditable="true" class="reportsSelect" value="link3"></option>
                         </select>
-                        <img src="pics/expand.png" class="expand-image">
-                        <img src="pics/settings.png">
-                        <div id="quickReportsForm">
+                        <img src="pics/expand.png" class="expand-image" onclick="fullPage()">
+                        <img src="pics/settings.png" id="reportsSettingsImg" class="settings" onclick="reportsRestoreForm()">
+                        <iframe id="reportsIframe" class="reports-iframe" src="" frameborder="0" width="88%" height="88%"></iframe>
+                        <div id="quickReportsForm" class="quick-reports-form">
                             <form id="form1">
                                 <div>
                                     <span>Report 01</span>
@@ -126,20 +128,24 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                 <li id="tabMyFolders" class="tab">
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                     <a href="#myFolders">My Folders</a>
-                    <div id="myFolders"></div>
+                    <div id="myFolders">
+                        <iframe src="http://www.netcraft.co.il/" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
                 </li>
                 <li id="tabMyTeamFolders" class="tab">
                     <i class="fa fa-folder-open-o" aria-hidden="true"></i>
                     <a href="#myTeamFolders">My Team Folders</a>
                     <div id="myTeamFolders">
-                        <select id="FoldersSelectList" class="select" name="Sites Links" form="form2">
+                        <select id="foldersSelectList" class="select" name="Sites Links" form="form2" onchange="foldersShowSite()">
+                            <option disabled selected value>-Please select link-</option>
                             <option class="foldersSelect" value="link1"></option>
                             <option class="foldersSelect" value="link2"></option>
                             <option class="foldersSelect" value="link3"></option>
                         </select>
-                        <img src="pics/expand.png" class="expand-image">
-                        <img src="pics/settings.png">
-                        <div id="myTeamFoldersForm">
+                        <img src="pics/expand.png" class="expand-image" onclick="fullPage()">
+                        <img src="pics/settings.png" id="foldersSettingsImg" class="settings" onclick="foldersRestoreForm()">
+                        <iframe id="foldersIframe" class="folders-iframe" src="" frameborder="0" width="88%" height="88%"></iframe>
+                        <div id="myTeamFoldersForm" class="my-team-folders-form">
                             <form id="form2">
                                 <div>
                                     <span>Report 01</span>
@@ -170,7 +176,9 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                 <li id="tabPublicFolders" class="tab">
                     <i class="fa fa-files-o" aria-hidden="true"></i>
                     <a href="#publicReports">Public Reports</a>
-                    <div id="publicReports"></div>
+                    <div id="publicReports">
+                        <iframe src="http://netcraftacademy.co.il/" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
                 </li>
             </ul>
         </div>

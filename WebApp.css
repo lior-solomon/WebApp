@@ -157,18 +157,36 @@ input:focus {
 .active-select {
     visibility: visible;
 }
-#quickReportsForm, #myTeamFoldersForm {
+.iframe-active {
+    display: inline-block;
+    margin-left: 20px;
+}
+.reports-iframe {
+    display: none;
+}
+.folders-iframe {
+    display: none;
+}
+.form-inactive {
+    display: none;
+}
+.quick-reports-form, .my-team-folders-form {
     background-color: white;
     margin: 20px 20px;
     padding-top: 20Px;
     position: relative;
 }
 .expand-image {
-    left: 92%;
+    left: 93%;
+    top: 4px;
+}
+.no-back-color {
+    background-color: transparent;
+}
+.settings{
     background-color: white;
 }
 #quickReports>img, #myTeamFolders>img {
-    background-color: white;
     position: absolute;
     right: 20px;
     margin-top: 36px;
