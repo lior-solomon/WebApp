@@ -9,25 +9,19 @@
     <script src="https://use.fontawesome.com/8d4b3dfaba.js"></script>
 </head>
 <body>
-<!--
-
-Watch the video for reference:
-https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
-
--->
-
 <header>
     <div class="header">
         <a href="#"><img src="https://googledrive.com/host/0B6ZIsommzsgVMVA2MzdKUjN2S0U/logo-netcraft.svg" alt="netcraft"></a>
-        <form class="search-box" method="get" action="http://www.google.com">
-            <input type="search" name="q" placeholder="search">
+        <form id="searchBox" method="" action="#">
+            <input id="searchInput" type="search" name="search" placeholder="search">
+            <input id="searchSubmit" type="submit" hidden>
         </form>
     </div>
 </header>
 <div class="container">
     <div class="main">
         <div class="notifications">
-            <p>Notifications</p>
+            <p id="notifications">Notifications</p>
         </div>
         <div class="row">
             <div class="col-sm-4">
@@ -87,14 +81,16 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                 <li id="tabQuickReports" class="tab active-tab">
                     <i class="fa fa-external-link" aria-hidden="true"></i>
                     <a href="#quickReports">Quick Reports</a>
-                    <div id="quickReports">
-                        <select contenteditable="true" id="reportsSelectList" class="select" name="Sites Links" form="form1" onchange="reportsShowSite()">
+                    <div id="quickReports" class="show-div">
+                        <select id="reportsSelectList" class="select" name="Sites Links" form="form1" onchange="reportsShowSite()">
                             <option disabled selected value>-Please select link-</option>
-                            <option contenteditable="true" class="reportsSelect" value="link1"></option>
-                            <option contenteditable="true" class="reportsSelect" value="link2"></option>
-                            <option contenteditable="true" class="reportsSelect" value="link3"></option>
+                            <option class="reportsSelect" value="link1"></option>
+                            <option class="reportsSelect" value="link2"></option>
+                            <option class="reportsSelect" value="link3"></option>
                         </select>
-                        <img src="pics/expand.png" class="expand-image" onclick="fullPage()">
+                        <a href="" target="_blank" id="reportsIframeLink">
+                            <img src="pics/expand.png" class="expand-image">
+                        </a>
                         <img src="pics/settings.png" id="reportsSettingsImg" class="settings" onclick="reportsRestoreForm()">
                         <iframe id="reportsIframe" class="reports-iframe" src="" frameborder="0" width="88%" height="88%"></iframe>
                         <div id="quickReportsForm" class="quick-reports-form">
@@ -104,21 +100,21 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                                     <label>Name:</label>
                                     <input id="quickReportsReport1Name" class="quick-reports-input-name" type="text" name="Site name" autofocus>
                                     <label>URL:</label>
-                                    <input id="quickReportsReport1Url" class="quick-reports-input-url" type="text" name="Site URL">
+                                    <input id="quickReportsReport1Url" class="quick-reports-input-url" type="url" name="Site URL">
                                 </div>
                                 <div>
                                     <span>Report 02</span>
                                     <label>Name:</label>
                                     <input id="quickReportsReport2Name" class="quick-reports-input-name" type="text" name="Site name">
                                     <label>URL:</label>
-                                    <input id="quickReportsReport2Url" class="quick-reports-input-url" type="text" name="Site URL">
+                                    <input id="quickReportsReport2Url" class="quick-reports-input-url" type="url" name="Site URL">
                                 </div>
                                 <div>
                                     <span>Report 03</span>
                                     <label>Name:</label>
                                     <input id="quickReportsReport3Name" class="quick-reports-input-name" type="text" name="Site name">
                                     <label>URL:</label>
-                                    <input id="quickReportsReport3Url" class="quick-reports-input-url" type="text" name="Site URL">
+                                    <input id="quickReportsReport3Url" class="quick-reports-input-url" type="url" name="Site URL">
                                 </div>
                                 <input class="quick-reports-submit-button" type="submit" value="Save">
                             </form>
@@ -128,21 +124,23 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                 <li id="tabMyFolders" class="tab">
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                     <a href="#myFolders">My Folders</a>
-                    <div id="myFolders">
+                    <div id="myFolders" class="hide-divs">
                         <iframe src="http://www.netcraft.co.il/" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </li>
                 <li id="tabMyTeamFolders" class="tab">
                     <i class="fa fa-folder-open-o" aria-hidden="true"></i>
                     <a href="#myTeamFolders">My Team Folders</a>
-                    <div id="myTeamFolders">
+                    <div id="myTeamFolders" class="hide-divs">
                         <select id="foldersSelectList" class="select" name="Sites Links" form="form2" onchange="foldersShowSite()">
                             <option disabled selected value>-Please select link-</option>
                             <option class="foldersSelect" value="link1"></option>
                             <option class="foldersSelect" value="link2"></option>
                             <option class="foldersSelect" value="link3"></option>
                         </select>
-                        <img src="pics/expand.png" class="expand-image" onclick="fullPage()">
+                        <a href="" target="_blank" id="foldersIframeLink">
+                            <img src="pics/expand.png" class="expand-image">
+                        </a>
                         <img src="pics/settings.png" id="foldersSettingsImg" class="settings" onclick="foldersRestoreForm()">
                         <iframe id="foldersIframe" class="folders-iframe" src="" frameborder="0" width="88%" height="88%"></iframe>
                         <div id="myTeamFoldersForm" class="my-team-folders-form">
@@ -152,21 +150,21 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                                     <label>Name:</label>
                                     <input id="myTeamFoldersReport1Name" class="my-team-folders-input-name" type="text" name="Site name" autofocus>
                                     <label>URL:</label>
-                                    <input id="myTeamFoldersReport1Url" class="my-team-folders-input-url" type="text" name="Site URL">
+                                    <input id="myTeamFoldersReport1Url" class="my-team-folders-input-url" type="url" name="Site URL">
                                 </div>
                                 <div>
                                     <span>Report 02</span>
                                     <label>Name:</label>
                                     <input id="myTeamFoldersReport2Name" class="my-team-folders-input-name" type="text" name="Site name">
                                     <label>URL:</label>
-                                    <input id="myTeamFoldersReport2Url" class="my-team-folders-input-url" type="text" name="Site URL">
+                                    <input id="myTeamFoldersReport2Url" class="my-team-folders-input-url" type="url" name="Site URL">
                                 </div>
                                 <div>
                                     <span>Report 03</span>
                                     <label>Name:</label>
                                     <input id="myTeamFoldersReport3Name" class="my-team-folders-input-name" type="text" name="Site name">
                                     <label>URL:</label>
-                                    <input id="myTeamFoldersReport3Url" class="my-team-folders-input-url" type="text" name="Site URL">
+                                    <input id="myTeamFoldersReport3Url" class="my-team-folders-input-url" type="url" name="Site URL">
                                 </div>
                                 <input class="my-team-folders-submit-button" type="submit" value="Save">
                             </form>
@@ -176,7 +174,7 @@ https://drive.google.com/file/d/0B6ZIsommzsgVcG9ZcDZFaFVCaDA
                 <li id="tabPublicFolders" class="tab">
                     <i class="fa fa-files-o" aria-hidden="true"></i>
                     <a href="#publicReports">Public Reports</a>
-                    <div id="publicReports">
+                    <div id="publicReports" class="hide-divs">
                         <iframe src="http://netcraftacademy.co.il/" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </li>

@@ -1,3 +1,5 @@
+//local storage
+
 var state = {
     tabs: {
         tabNames: {
@@ -33,7 +35,14 @@ var state = {
     }
 }
 
-// Display focused tab
+//Auto display tab
+
+document.querySelector("body").onload = function () {showFirstTab()};
+function showFirstTab () {
+    document.querySelector("#quickReports").className = 'show-div';
+}
+
+ //Display focused tab
 
 var tabs = document.querySelectorAll('.tab');
 for (var i=0; i<tabs.length; i++) {
@@ -122,14 +131,15 @@ function form2Validate (e) {
     }
 }
 
-// Select tag to iframe and back again
+// Select tag to iframe and back
 
 function reportsShowSite () {
     var currentSelect = document.querySelector("#reportsSelectList");
-    document.querySelector('#quickReportsForm').className = 'quick-reports-form form-inactive';
     document.querySelector('#reportsSettingsImg').className = 'no-back-color';
+    document.querySelector('#quickReportsForm').className = 'quick-reports-form form-inactive';
     document.querySelector('#reportsIframe').className = 'iframe-active';
     document.querySelector('#reportsIframe').src = currentSelect.options[currentSelect.selectedIndex].value;
+    document.querySelector('#reportsIframeLink').href = currentSelect.options[currentSelect.selectedIndex].value;
 }
 function reportsRestoreForm () {
     document.querySelector('#reportsIframe').className = 'reports-iframe';
@@ -142,11 +152,46 @@ function foldersShowSite () {
     document.querySelector('#foldersSettingsImg').className = 'no-back-color';
     document.querySelector('#foldersIframe').className = 'iframe-active';
     document.querySelector('#foldersIframe').src = currentSelect.options[currentSelect.selectedIndex].value;
+    document.querySelector('#foldersIframeLink').href = currentSelect.options[currentSelect.selectedIndex].value;
 }
-    function foldersRestoreForm () {
+function foldersRestoreForm () {
     document.querySelector('#foldersIframe').className = 'folders-iframe';
     document.querySelector('#myTeamFoldersForm').className = 'my-team-folders-form';
     document.querySelector('#foldersreportsSettingsImg').className = 'settings';
 
 }
 
+ // search - notifications - iframe
+
+document.querySelector('#searchBox').addEventListener('submit', searchLocal);
+function searchLocal(e) {
+    e.preventDefault();
+    var reportsOptions = document.querySelector('#reportsSelectList')
+    for (i=1; i<reportsOptions.length; i++) {
+        if (document.querySelector('#searchInput').value === reportsOptions[i].innerText) {
+            document.querySelector('#reportsSettingsImg').className = 'no-back-color';
+            document.querySelector('#quickReportsForm').className = 'quick-reports-form form-inactive';
+            document.querySelector('#reportsIframe').className = 'iframe-active';
+            document.querySelector('#reportsIframe').src = reportsOptions[i].value;
+            document.querySelector('#notifications').textContent = 'Searched phrase' + ' \"' +
+            reportsOptions[i].innerText + '\" ' + 'found on local links list and is now presented below in iframe';
+        }
+        else {
+            document.querySelector('#notifications').textContent = 'Searched phrase not found'
+        }
+    }
+    var foldersOptions = document.querySelector('#foldersSelectList')
+    for (i=1; i<foldersOptions.length; i++) {
+        if (document.querySelector('#searchInput').value === foldersOptions[i].innerText) {
+            document.querySelector('#foldersSettingsImg').className = 'no-back-color';
+            document.querySelector('#myTeamFoldersForm').className = 'my-team-folders-form form-inactive';
+                document.querySelector('#foldersIframe').className = 'iframe-active';
+            document.querySelector('#foldersIframe').src = foldersOptions[i].value;
+            document.querySelector('#notifications').textContent = 'Searched phrase' + ' \"' +
+            foldersOptions[i].innerText + '\" ' + 'found on local links list and is now presented below in iframe';
+        }
+        else {
+            document.querySelector('#notifications').textContent = 'Searched phrase not found'
+        }
+    }
+}

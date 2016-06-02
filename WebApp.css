@@ -11,7 +11,7 @@ body{
     margin: auto;
     background: black;
 }
-.search-box {
+#searchBox {
     float: right;
 }
 input:focus {
@@ -140,13 +140,19 @@ input:focus {
     margin-left: 43px;
     width: 93.5%;
     height: 360px;
+}
+.hide-divs {
     display: none;
 }
-.tabs li a:hover{
-    font-weight: bold;
+.show-div {
+    display:block;
 }
 #quickReports:target, #myFolders:target, #myTeamFolders:target, #publicReports:target {
     display: block;
+}
+
+.tabs li a:hover{
+    font-weight: bold;
 }
 .select {
     width: 150px;
@@ -176,9 +182,10 @@ input:focus {
     padding-top: 20Px;
     position: relative;
 }
-.expand-image {
-    left: 93%;
-    top: 4px;
+#reportsIframeLink, #foldersIframeLink {
+    position: relative;
+    left: 69%;
+    top: 16px;
 }
 .no-back-color {
     background-color: transparent;
