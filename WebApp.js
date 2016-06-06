@@ -1,5 +1,3 @@
-//local storage
-
 var state = {
     tabs: {
         tabNames: {
@@ -32,6 +30,27 @@ var state = {
             myTeamFoldersReport2Url: "",
             myTeamFoldersReport3Url: ""
         }
+    }
+}
+
+// Local storage
+
+var stateStorage = JSON.parse(localStorage.getItem('saveState'));
+restoreForm ();
+function restoreForm () {
+    var nameFields1 = document.querySelectorAll('.quick-reports-input-name');
+    var urlFields1 = document.querySelectorAll('.quick-reports-input-url');
+    //var nameFields2 = document.querySelectorAll('.my-team-folders-input-name');
+    //var urlFields2 = document.querySelectorAll('.my-team-folders-input-url');
+    for (var i=0; i<nameFields1.length; i++) {
+        var nameField1Id = nameFields1[i].id;
+        nameFields1[i].value = stateStorage.quickReports.inputNames[nameField1Id];
+        var urlField1Id = urlFields1[i].id;
+        urlFields1[i].value = stateStorage.quickReports.inputUrls[urlField1Id];
+        //var nameField2Id = nameFields2[i].id;
+        //nameFields2[i].value = stateStorage.myTeamFolders.inputNames[nameField2Id];
+        //var urlField2Id = urlFields2[i].id;
+        //urlFields2[i].value = stateStorage.myTeamFolders.inputUrls[urlField2Id];
     }
 }
 
@@ -93,6 +112,7 @@ function form1Validate (e) {
             var urlFieldId = urlFields[i].id;
             state.quickReports.inputUrls[urlFieldId] = urlFields[i].value;
             document.querySelectorAll('.reportsSelect')[i].value = urlFields[i].value;
+            localStorage.setItem('saveState', JSON.stringify(state));
             urlFields[i].className = 'quick-reports-input-url';
             document.querySelector('#reportsSelectList').className = 'select active-select';
         }
@@ -125,6 +145,7 @@ function form2Validate (e) {
             var urlFieldId = urlFields[i].id;
             state.myTeamFolders.inputUrls[urlFieldId] = urlFields[i].value;
             document.querySelectorAll('.foldersSelect')[i].value = urlFields[i].value;
+            //localStorage.setItem('saveState', JSON.stringify(state));
             urlFields[i].className = 'my-team-folders-input-url';
             document.querySelector('#foldersSelectList').className = 'select active-select';
         }
