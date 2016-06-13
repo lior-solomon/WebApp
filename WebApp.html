@@ -78,15 +78,15 @@
         </div>
         <div class="tabs">
             <ul>
-                <li id="tabQuickReports" class="tab active-tab">
+                <li id="tabQuickReports" class="tab">
                     <i class="fa fa-external-link" aria-hidden="true"></i>
                     <a href="#quickReports">Quick Reports</a>
-                    <div id="quickReports" class="show-div">
+                    <div id="quickReports" class="tab-div show-div">
                         <select id="reportsSelectList" class="select" name="Sites Links" form="form1" onchange="reportsShowSite()">
-                            <option disabled selected value>-Please select link-</option>
-                            <option class="reportsSelect" value="link1"></option>
-                            <option class="reportsSelect" value="link2"></option>
-                            <option class="reportsSelect" value="link3"></option>
+                            <option disabled selected value> Please select link </option>
+                            <option class="reports-select" value="link1"></option>
+                            <option class="reports-select" value="link2"></option>
+                            <option class="reports-select" value="link3"></option>
                         </select>
                         <a href="" target="_blank" id="reportsIframeLink">
                             <img src="pics/expand.png" class="expand-image">
@@ -116,6 +116,7 @@
                                     <label>URL:</label>
                                     <input id="quickReportsReport3Url" class="quick-reports-input-url" type="url" name="Site URL">
                                 </div>
+                                <button id="quickReportsClear" class="clear-button">Clear</button>
                                 <input class="quick-reports-submit-button" type="submit" value="Save">
                             </form>
                         </div>
@@ -124,16 +125,16 @@
                 <li id="tabMyFolders" class="tab">
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                     <a href="#myFolders">My Folders</a>
-                    <div id="myFolders" class="hide-divs">
+                    <div id="myFolders" class="tab-div hide-divs">
                         <iframe src="http://www.netcraft.co.il/" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </li>
                 <li id="tabMyTeamFolders" class="tab">
                     <i class="fa fa-folder-open-o" aria-hidden="true"></i>
                     <a href="#myTeamFolders">My Team Folders</a>
-                    <div id="myTeamFolders" class="hide-divs">
+                    <div id="myTeamFolders" class="tab-div hide-divs">
                         <select id="foldersSelectList" class="select" name="Sites Links" form="form2" onchange="foldersShowSite()">
-                            <option disabled selected value>-Please select link-</option>
+                            <option disabled selected value> Please select link </option>
                             <option class="foldersSelect" value="link1"></option>
                             <option class="foldersSelect" value="link2"></option>
                             <option class="foldersSelect" value="link3"></option>
@@ -166,6 +167,7 @@
                                     <label>URL:</label>
                                     <input id="myTeamFoldersReport3Url" class="my-team-folders-input-url" type="url" name="Site URL">
                                 </div>
+                                <button id="myTeamFoldersClear" class="clear-button">Clear</button>
                                 <input class="my-team-folders-submit-button" type="submit" value="Save">
                             </form>
                         </div>
@@ -174,8 +176,8 @@
                 <li id="tabPublicFolders" class="tab">
                     <i class="fa fa-files-o" aria-hidden="true"></i>
                     <a href="#publicReports">Public Reports</a>
-                    <div id="publicReports" class="hide-divs">
-                        <iframe src="http://netcraftacademy.co.il/" frameborder="0" width="100%" height="100%"></iframe>
+                    <div id="publicReports" class="tab-div hide-divs">
+                        <iframe src="http://netcraftacademy.co.il/" frameborder="0" width="100%" height="95%"></iframe>
                     </div>
                 </li>
             </ul>

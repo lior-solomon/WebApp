@@ -1,3 +1,5 @@
+// Object literal notation for variable data storage
+
 var state = {
     tabs: {
         tabNames: {
@@ -31,124 +33,164 @@ var state = {
             myTeamFoldersReport3Url: ""
         }
     }
+};
+
+// Reset state object from local storage
+
+if (localStorage.getItem('saveState') !== null) {
+    state = JSON.parse(localStorage.getItem('saveState'));
 }
 
-// Local storage
+//Restore focused tab from local storage
 
-var stateStorage = JSON.parse(localStorage.getItem('saveState'));
+tabManagement();
+function tabManagement () {
+    var tabs = document.querySelectorAll('.tab');
+    var tabDivs = document.querySelectorAll('.tab-div');
+    restoreTabFocus();
+    function restoreTabFocus () {
+        for(var i=0 ; i<tabs.length; i++) {
+          tabs[i].className = state.tabs.tabNames[tabs[i].id];
+            if (state.tabs.tabNames[tabs[i].id] === 'active-tab') {
+                tabDivs[i].className = 'tab-div show-div';
+            }
+        }
+    }
+
+//Display clicked tab
+
+    for (var i=0 ; i<tabs.length; i++){
+        tabs[i].addEventListener('click', tabFocus.bind(this, tabs[i].id));
+    }
+    function tabFocus(id) {
+        for(var i=0; i<tabs.length; i++){
+            if(tabs[i].id === id){
+                tabs[i].className = 'active-tab';
+                tabDivs[i].className = 'tab-div show-div';
+                state.tabs.tabNames[tabs[i].id] = 'active-tab';
+                localStorage.setItem('saveState', JSON.stringify(state));
+            }
+            else {
+                tabs[i].className = 'tab';
+                tabDivs[i].className = 'tab-div hide-divs';
+                state.tabs.tabNames[tabs[i].id] = 'tab';
+                localStorage.setItem('saveState', JSON.stringify(state));
+            }
+        }
+    }
+}
+
+// Restore form values from local storage
+
 restoreForm ();
 function restoreForm () {
-    var nameFields1 = document.querySelectorAll('.quick-reports-input-name');
-    var urlFields1 = document.querySelectorAll('.quick-reports-input-url');
-    //var nameFields2 = document.querySelectorAll('.my-team-folders-input-name');
-    //var urlFields2 = document.querySelectorAll('.my-team-folders-input-url');
-    for (var i=0; i<nameFields1.length; i++) {
-        var nameField1Id = nameFields1[i].id;
-        nameFields1[i].value = stateStorage.quickReports.inputNames[nameField1Id];
-        var urlField1Id = urlFields1[i].id;
-        urlFields1[i].value = stateStorage.quickReports.inputUrls[urlField1Id];
-        //var nameField2Id = nameFields2[i].id;
-        //nameFields2[i].value = stateStorage.myTeamFolders.inputNames[nameField2Id];
-        //var urlField2Id = urlFields2[i].id;
-        //urlFields2[i].value = stateStorage.myTeamFolders.inputUrls[urlField2Id];
+    var reportsNameFields = document.querySelectorAll('.quick-reports-input-name');
+    var reportsUrlFields = document.querySelectorAll('.quick-reports-input-url');
+    var foldersNameFields = document.querySelectorAll('.my-team-folders-input-name');
+    var foldersUrlFields = document.querySelectorAll('.my-team-folders-input-url');
+    for (var i = 0; i < reportsNameFields.length; i++) {
+        var reportsNameFieldId = reportsNameFields[i].id;
+        reportsNameFields[i].value = state.quickReports.inputNames[reportsNameFieldId];
+        var reportsUrlFieldId = reportsUrlFields[i].id;
+        reportsUrlFields[i].value = state.quickReports.inputUrls[reportsUrlFieldId];
+        var foldersNameFieldId = foldersNameFields[i].id;
+        foldersNameFields[i].value = state.myTeamFolders.inputNames[foldersNameFieldId];
+        var foldersUrlFieldId = foldersUrlFields[i].id;
+        foldersUrlFields[i].value = state.myTeamFolders.inputUrls[foldersUrlFieldId];
     }
 }
 
-//Auto display tab
+// Forms validations + Select tags input
 
-document.querySelector("body").onload = function () {showFirstTab()};
-function showFirstTab () {
-    document.querySelector("#quickReports").className = 'show-div';
-}
-
- //Display focused tab
-
-var tabs = document.querySelectorAll('.tab');
-for (var i=0; i<tabs.length; i++) {
-    var tabId = tabs[i].id;
-    tabs[i].value = state.tabs.tabNames[tabId]
-}
-
-for (var i=0 ; i<tabs.length; i++){
-    tabs[i].addEventListener('click', tabFocus.bind(this, tabs[i].id));
-}
-function tabFocus(id, e) {
-    for(var i=0 ; i<tabs.length; i++){
-        if(tabs[i].id !== id){
-            tabs[i].className = 'tab';
+formEventListener1();
+function formEventListener1 () {
+    var reportsForm1= document.querySelector('#form1');
+    reportsForm1.addEventListener('submit', form1Validate);
+    function form1Validate (e) {
+        e.preventDefault();
+        var nameFields = document.querySelectorAll('.quick-reports-input-name');
+        var urlFields = document.querySelectorAll('.quick-reports-input-url');
+        for (var i=0; i<nameFields.length; i++) {
+            if (nameFields[i].value === "") {
+                nameFields[i].className = 'quick-reports-input-name active-field';
+                nameFields[i].required = true;
+                return;
+            }
+            else if (urlFields[i].value === "") {
+                nameFields[i].className = 'quick-reports-input-name';
+                urlFields[i].className = 'quick-reports-input-url active-field';
+                urlFields[i].required = true;
+                urlFields[i].type = 'url';
+                urlFields[i].focus();
+                return;
+            }
+            else {
+                var nameFieldId = nameFields[i].id;
+                state.quickReports.inputNames[nameFieldId] = nameFields[i].value;
+                document.querySelectorAll('.reports-select')[i].text = nameFields[i].value;
+                var urlFieldId = urlFields[i].id;
+                state.quickReports.inputUrls[urlFieldId] = urlFields[i].value;
+                document.querySelectorAll('.reports-select')[i].value = urlFields[i].value;
+                localStorage.setItem('saveState', JSON.stringify(state));
+                urlFields[i].className = 'quick-reports-input-url';
+                document.querySelector('#reportsSelectList').className = 'select active-select';
+                document.querySelector('#quickReportsClear').className = 'clear-button show-clear';
+            }
         }
-        else {
-            tabs[i].className = 'tab active-tab';
+    }
+}
+formEventListener2();
+function formEventListener2 () {
+    var reportsForm2 = document.querySelector('#form2');
+    reportsForm2.addEventListener('submit', form2Validate);
+    function form2Validate (e) {
+        e.preventDefault();
+        var nameFields = document.querySelectorAll('.my-team-folders-input-name');
+        var urlFields = document.querySelectorAll('.my-team-folders-input-url');
+        for (var i = 0; i < nameFields.length; i++) {
+            if (nameFields[i].value === "") {
+                nameFields[i].className = 'my-team-folders-input-name active-field';
+                nameFields[i].required = true;
+                return;
+            }
+            else if (urlFields[i].value === "") {
+                nameFields[i].className = 'my-team-folders-input-name';
+                urlFields[i].className = 'my-team-folders-input-url active-field';
+                urlFields[i].required = true;
+                urlFields[i].type = 'url';
+                urlFields[i].focus();
+                return;
+            }
+            else {
+                var nameFieldId = nameFields[i].id;
+                state.myTeamFolders.inputNames[nameFieldId] = nameFields[i].value;
+                document.querySelectorAll('.foldersSelect')[i].text = nameFields[i].value;
+                var urlFieldId = urlFields[i].id;
+                state.myTeamFolders.inputUrls[urlFieldId] = urlFields[i].value;
+                document.querySelectorAll('.foldersSelect')[i].value = urlFields[i].value;
+                localStorage.setItem('saveState', JSON.stringify(state));
+                urlFields[i].className = 'my-team-folders-input-url';
+                document.querySelector('#foldersSelectList').className = 'select active-select';
+                document.querySelector('#myTeamFoldersClear').className = 'clear-button show-clear';
+            }
         }
     }
 }
 
-// Form validation + Select tag input
+//  Clear forms
 
-var reportsForm1= document.querySelector('#form1');
-reportsForm1.addEventListener('submit', form1Validate);
-function form1Validate (e) {
+document.querySelector('#quickReportsClear').addEventListener('click', reportsClear);
+function reportsClear (e) {
     e.preventDefault();
+    document.querySelector('#quickReportsReport1Name').focus();
+    document.querySelector('#quickReportsReport1Name').required = true;
     var nameFields = document.querySelectorAll('.quick-reports-input-name');
     var urlFields = document.querySelectorAll('.quick-reports-input-url');
     for (var i=0; i<nameFields.length; i++) {
-        if (nameFields[i].value === "") {
-            nameFields[i].className = 'quick-reports-input-name active-field';
-            nameFields[i].required = true;
-            return;
-        }
-        else if (urlFields[i].value === "") {
-            nameFields[i].className = 'quick-reports-input-name';
-            urlFields[i].className = 'quick-reports-input-url active-field';
-            urlFields[i].required = true;
-            urlFields[i].type = 'url';
-            urlFields[i].focus();
-            return;
-        }
-        else {
-            var nameFieldId = nameFields[i].id;
-            state.quickReports.inputNames[nameFieldId] = nameFields[i].value;
-            document.querySelectorAll('.reportsSelect')[i].text = nameFields[i].value;
-            var urlFieldId = urlFields[i].id;
-            state.quickReports.inputUrls[urlFieldId] = urlFields[i].value;
-            document.querySelectorAll('.reportsSelect')[i].value = urlFields[i].value;
-            localStorage.setItem('saveState', JSON.stringify(state));
-            urlFields[i].className = 'quick-reports-input-url';
-            document.querySelector('#reportsSelectList').className = 'select active-select';
-        }
-    }
-}
-var reportsForm2 = document.querySelector('#form2');
-reportsForm2.addEventListener('submit', form2Validate);
-function form2Validate (e) {
-    e.preventDefault();
-    var nameFields = document.querySelectorAll('.my-team-folders-input-name');
-    var urlFields = document.querySelectorAll('.my-team-folders-input-url');
-    for (var i = 0; i < nameFields.length; i++) {
-        if (nameFields[i].value === "") {
-            nameFields[i].className = 'my-team-folders-input-name active-field';
-            nameFields[i].required = true;
-            return;
-        }
-        else if (urlFields[i].value === "") {
-            nameFields[i].className = 'my-team-folders-input-name';
-            urlFields[i].className = 'my-team-folders-input-url active-field';
-            urlFields[i].required = true;
-            urlFields[i].type = 'url';
-            urlFields[i].focus();
-            return;
-        }
-        else {
-            var nameFieldId = nameFields[i].id;
-            state.myTeamFolders.inputNames[nameFieldId] = nameFields[i].value;
-            document.querySelectorAll('.foldersSelect')[i].text = nameFields[i].value;
-            var urlFieldId = urlFields[i].id;
-            state.myTeamFolders.inputUrls[urlFieldId] = urlFields[i].value;
-            document.querySelectorAll('.foldersSelect')[i].value = urlFields[i].value;
-            //localStorage.setItem('saveState', JSON.stringify(state));
-            urlFields[i].className = 'my-team-folders-input-url';
-            document.querySelector('#foldersSelectList').className = 'select active-select';
-        }
+        nameFields[i].value = '';
+        state.quickReports.inputNames[nameFields[i].id] = '';
+        urlFields[i].value = '';
+        state.quickReports.inputUrls[urlFields[i].id] = '';
     }
 }
 
@@ -182,37 +224,42 @@ function foldersRestoreForm () {
 
 }
 
- // search - notifications - iframe
+ // search box to notifications and to iframe
 
 document.querySelector('#searchBox').addEventListener('submit', searchLocal);
 function searchLocal(e) {
     e.preventDefault();
-    var reportsOptions = document.querySelector('#reportsSelectList')
-    for (i=1; i<reportsOptions.length; i++) {
-        if (document.querySelector('#searchInput').value === reportsOptions[i].innerText) {
+    var reportsNameFields = document.querySelectorAll('.quick-reports-input-name');
+    var reportsUrlFields = document.querySelectorAll('.quick-reports-input-url');
+    for (var i = 0; i < reportsNameFields.length; i++) {
+        if (document.querySelector('#searchInput').value === reportsNameFields[i].value) {
             document.querySelector('#reportsSettingsImg').className = 'no-back-color';
             document.querySelector('#quickReportsForm').className = 'quick-reports-form form-inactive';
             document.querySelector('#reportsIframe').className = 'iframe-active';
-            document.querySelector('#reportsIframe').src = reportsOptions[i].value;
-            document.querySelector('#notifications').textContent = 'Searched phrase' + ' \"' +
-            reportsOptions[i].innerText + '\" ' + 'found on local links list and is now presented below in iframe';
+            document.querySelector('#reportsIframe').src = reportsUrlFields[i].value;
+            document.querySelector('#notifications').className = 'show-notifications';
+            document.querySelector('#notifications').textContent = 'Searched phrase found - link shown below';
+            break;
         }
         else {
-            document.querySelector('#notifications').textContent = 'Searched phrase not found'
+            document.querySelector('#notifications').textContent = 'Searched phrase not found';
         }
     }
-    var foldersOptions = document.querySelector('#foldersSelectList')
-    for (i=1; i<foldersOptions.length; i++) {
-        if (document.querySelector('#searchInput').value === foldersOptions[i].innerText) {
+    var foldersNameFields = document.querySelectorAll('.my-team-folders-input-name');
+    var foldersUrlFields = document.querySelectorAll('.my-team-folders-input-url');
+    for (var i = 0; i < foldersNameFields.length; i++) {
+        if (document.querySelector('#searchInput').value === foldersNameFields[i].value) {
             document.querySelector('#foldersSettingsImg').className = 'no-back-color';
             document.querySelector('#myTeamFoldersForm').className = 'my-team-folders-form form-inactive';
-                document.querySelector('#foldersIframe').className = 'iframe-active';
-            document.querySelector('#foldersIframe').src = foldersOptions[i].value;
-            document.querySelector('#notifications').textContent = 'Searched phrase' + ' \"' +
-            foldersOptions[i].innerText + '\" ' + 'found on local links list and is now presented below in iframe';
+            document.querySelector('#foldersIframe').className = 'iframe-active';
+            document.querySelector('#foldersIframe').src = foldersUrlFields[i].value;
+            document.querySelector('#notifications').className = 'show-notifications';
+            document.querySelector('#notifications').textContent = 'Searched phrase found - link shown below';
+            break;
         }
         else {
-            document.querySelector('#notifications').textContent = 'Searched phrase not found'
+            document.querySelector('#notifications').textContent = 'Searched phrase not found';
         }
     }
 }
+

@@ -35,10 +35,8 @@ input:focus {
 .nav-section {
     color: white;
     background: black;
-    /*width: 25%;*/
     margin: 43px;
     text-align: center;
-    /*display: inline-block;*/
 }
 #reportingPlatform {
     background: black url("pics/action-report-new.png") 91px 45px no-repeat;
@@ -145,12 +143,8 @@ input:focus {
     display: none;
 }
 .show-div {
-    display:block;
-}
-#quickReports:target, #myFolders:target, #myTeamFolders:target, #publicReports:target {
     display: block;
 }
-
 .tabs li a:hover{
     font-weight: bold;
 }
@@ -228,10 +222,23 @@ input:focus {
     color: white;
     border: none;
     position: relative;
-    left: 47.6%;
+    left: 45%;
     top: 12px;
 }
 .quick-reports-submit-button:focus, .my-team-folders-submit-button:focus {
     background-color: orange;
 }
-
+.clear-button {
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+    font-weight: 700;
+    border: none;
+    position: relative;
+    left: 44%;
+    top: 12px;
+    visibility: hidden;
+}
+.show-clear {
+    visibility: visible;
+}
