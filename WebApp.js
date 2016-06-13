@@ -111,12 +111,12 @@ function formEventListener1 () {
         var nameFields = document.querySelectorAll('.quick-reports-input-name');
         var urlFields = document.querySelectorAll('.quick-reports-input-url');
         for (var i=0; i<nameFields.length; i++) {
-            if (nameFields[i].value === "") {
+            if (nameFields[i].value === '') {
                 nameFields[i].className = 'quick-reports-input-name active-field';
                 nameFields[i].required = true;
                 return;
             }
-            else if (urlFields[i].value === "") {
+            else if (urlFields[i].value === '') {
                 nameFields[i].className = 'quick-reports-input-name';
                 urlFields[i].className = 'quick-reports-input-url active-field';
                 urlFields[i].required = true;
@@ -181,16 +181,24 @@ function formEventListener2 () {
 
 document.querySelector('#quickReportsClear').addEventListener('click', reportsClear);
 function reportsClear (e) {
-    e.preventDefault();
+    document.querySelector('#form1').reset();
     document.querySelector('#quickReportsReport1Name').focus();
-    document.querySelector('#quickReportsReport1Name').required = true;
-    var nameFields = document.querySelectorAll('.quick-reports-input-name');
-    var urlFields = document.querySelectorAll('.quick-reports-input-url');
-    for (var i=0; i<nameFields.length; i++) {
-        nameFields[i].value = '';
-        state.quickReports.inputNames[nameFields[i].id] = '';
-        urlFields[i].value = '';
-        state.quickReports.inputUrls[urlFields[i].id] = '';
+    var reportsNameFields = document.querySelectorAll('.quick-reports-input-name');
+    var reportsUrlFields = document.querySelectorAll('.quick-reports-input-url');
+    for (var i=0; i<reportsNameFields.length; i++) {
+        reportsNameFields[i].className = 'quick-reports-input-name';
+        reportsUrlFields[i].className = 'quick-reports-input-url';
+    }
+}
+document.querySelector('#myTeamFoldersClear').addEventListener('click', foldersClear);
+function foldersClear (e) {
+    document.querySelector('#form2').reset();
+    document.querySelector('#myTeamFoldersReport1Name').focus();
+    var foldersNameFields = document.querySelectorAll('.my-team-folders-input-name');
+    var foldersUrlFields = document.querySelectorAll('.my-team-folders-input-url');
+    for (var i=0; i<foldersNameFields.length; i++) {
+        foldersNameFields[i].className = 'my-team-folders-input-name';
+        foldersUrlFields[i].className = 'my-team-folders-input-url';
     }
 }
 
