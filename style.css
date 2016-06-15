@@ -6,7 +6,7 @@ body{
 }
 .header {
     max-width: 100%;
-    min-width: 400px;
+    min-width: 360px;
     padding: 6px;
     margin: auto;
     background: black;
@@ -39,17 +39,17 @@ input:focus {
     text-align: center;
 }
 #reportingPlatform {
-    background: black url("pics/action-report-new.png") 91px 45px no-repeat;
+    background: black url("pics/action-report-new.png") 50% 45px no-repeat;
     height: 114px;
     position: relative;
 }
 #dashboard {
-    background: black url("pics/action-report-top.png") 91px 45px no-repeat;
+    background: black url("pics/action-report-top.png") 50% 45px no-repeat;
     height: 114px;
     position: relative;
 }
 #tutorials {
-    background: black url("pics/actions-help.png") 91px 45px no-repeat;
+    background: black url("pics/actions-help.png") 50% 45px no-repeat;
     height: 114px;
     position: relative;
 }
@@ -122,11 +122,11 @@ input:focus {
 .tabs a {
     text-decoration: none;
     color: black;
-    margin-left: 70px;
+    margin-left: 30%;
 }
 .tabs i {
     position: relative;
-    left: 70px;
+    left: 30%;
 }
 .active-tab {
     background-color: gray;
@@ -178,7 +178,7 @@ input:focus {
 }
 #reportsIframeLink, #foldersIframeLink {
     position: relative;
-    left: 69%;
+    left: 46%;
     top: 16px;
 }
 .no-back-color {

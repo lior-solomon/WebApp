@@ -37,7 +37,10 @@ var state = {
 
 // Reset state object from local storage
 
-if (localStorage.getItem('saveState') !== null) {
+if (localStorage.getItem('saveState') === null) {
+    document.querySelector('#tabQuickReports').className = 'active-tab';
+}
+else {
     state = JSON.parse(localStorage.getItem('saveState'));
 }
 
@@ -63,6 +66,7 @@ function tabManagement () {
         tabs[i].addEventListener('click', tabFocus.bind(this, tabs[i].id));
     }
     function tabFocus(id) {
+        document.querySelector('#tabQuickReports').className = 'tab';
         for(var i=0; i<tabs.length; i++){
             if(tabs[i].id === id){
                 tabs[i].className = 'active-tab';
